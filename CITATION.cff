@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use SeDeM, please cite the paper below."
+title: "SeDeM: Selective Decompression of Hidden-State Memories for Long-Context Question Answering"
+authors:
+  - family-names: Haghifam
+    given-names: Maryam
+  - family-names: Cong
+    given-names: Jason
+  - family-names: Sun
+    given-names: Yizhou
+date-released: 2026-07-31
+url: "https://arxiv.org/abs/2608.00311"
+repository-code: "https://github.com/maryamhgf/SeDeM"
+license: MIT
+preferred-citation:
+  type: conference-paper
+  title: "SeDeM: Selective Decompression of Hidden-State Memories for Long-Context Question Answering"
+  authors:
+    - family-names: Haghifam
+      given-names: Maryam
+    - family-names: Cong
+      given-names: Jason
+    - family-names: Sun
+      given-names: Yizhou
+  collection-title: "Proceedings of the 2026 Conference on Empirical Methods in Natural Language Processing (EMNLP)"
+  year: 2026
+  url: "https://arxiv.org/abs/2608.00311"

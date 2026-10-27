@@ -1,0 +1,16 @@
+# SeDeM on QASPER, Llama-3.2-3B (paper Table 1, 3B block: F1 26.74 / ROUGE-L 25.74).
+# The printed value is a selector-disabled evaluation (all blocks decompressed) on the full 945 validation questions.
+# Stage 2 loss weights are the launcher defaults of May 2026 (the run's log was not preserved).
+MODEL=meta-llama/Llama-3.2-3B; COMPRESSOR_HIDDEN_DIM=3072
+EXTRACTION_LAYER=14; INJECTION_LAYER=-999                   # -999 = inject at the extraction layer
+MIX_EXTRACTION_LAYERS=False                                 # single extraction layer (mixing hurt on QASPER)
+DATASET_NAME=allenai/qasper; DATASET_CONFIG=default
+STAGE1_TRANSFORM=qasper; STAGE2_TRANSFORM=qasper; EVAL_TRANSFORM=qasper
+MAX_LEN=8192
+STAGE1_EPOCHS=5; STAGE1_LR=3e-4; STAGE1_CTX_TOKEN_LOSS_WEIGHT=1.0; STAGE1_REC_LOSS_WEIGHT=1.0; STAGE1_DISTILL_LOSS_WEIGHT=0.5
+STAGE1_EVAL_STEPS=28; STAGE1_SAVE_STEPS=28
+STAGE2_EPOCHS=3; STAGE2_LR=5e-5; STAGE2_CTX_TOKEN_LOSS_WEIGHT=0.0; STAGE2_REC_LOSS_WEIGHT=0.25; STAGE2_DISTILL_LOSS_WEIGHT=0.25
+STAGE2_EVAL_STEPS=200; STAGE2_SAVE_STEPS=200; STAGE2_MAX_EVAL_SAMPLES=945
+SELECTOR_DATASET=qasper; SELECTOR_EPOCHS=2; SELECTOR_LR=1e-3; SELECTOR_TEMPERATURE=0.07; SELECTOR_LAMBDA_MARGIN=0.0; SELECTOR_MAX_VAL_QUESTIONS=50
+EVAL_HARNESS=qa; TOP_K=8; K_SWEEP="8 16 24 32"; MAX_NEW_TOKENS=512; EVAL_CONTEXT_MAX_LENGTH=4096   # launchers used 512 new tokens (paper text: 128)
+EVAL_SELECTION_MODE=off

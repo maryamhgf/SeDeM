@@ -1,0 +1,18 @@
+# Tested configuration (NVIDIA A100-SXM4-40GB, CUDA 12, Python 3.11).
+torch==2.6.0
+transformers==5.3.0
+peft==0.18.1
+accelerate==1.13.0
+deepspeed==0.18.9
+datasets==4.8.2
+safetensors==0.5.3
+huggingface_hub==1.7.1
+numpy==1.26.4
+tokenizers==0.22.2
+sentencepiece==0.1.99
+rouge_score==0.1.2
+nltk==3.9.4
+tqdm==4.67.1
+wandb==0.19.11
+# Optional, used when available for faster attention:
+# flash-attn>=2.6

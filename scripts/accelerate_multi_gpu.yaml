@@ -1,0 +1,7 @@
+# accelerate config used by the launchers when NUM_GPUS>1 (DDP, bf16). For DeepSpeed ZeRO use
+# `accelerate launch --use_deepspeed --deepspeed_config_file scripts/ds_config_zero2.json ...` with the Python commands printed by DRY_RUN=1.
+compute_environment: LOCAL_MACHINE
+distributed_type: MULTI_GPU
+mixed_precision: bf16
+num_machines: 1
+use_cpu: false

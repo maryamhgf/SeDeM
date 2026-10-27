@@ -1,0 +1,18 @@
+# SeDeM on MuSiQue, Llama-3.2-1B (paper Table 1, 1B block: F1 18.63 / ROUGE-L 18.55).
+# The printed value is a selector-disabled evaluation (all memory blocks decompressed) on the full 2,417-question
+# validation split via eval_qa.py; the checkpoints were not preserved and the 1B layer choice mirrors the 1B recipe
+# of the other datasets.
+MODEL=meta-llama/Llama-3.2-1B; COMPRESSOR_HIDDEN_DIM=2048
+EXTRACTION_LAYER=8; INJECTION_LAYER=6
+MIX_EXTRACTION_LAYERS=True; MIXING_LAYERS=6,8,10,12
+DATASET_NAME=dgslibisey/MuSiQue; DATASET_CONFIG=default
+STAGE1_TRANSFORM=musique; STAGE2_TRANSFORM=musique          # as launched: Stage 2 on supporting paragraphs; use musique_full for all 20
+MAX_LEN=8192
+STAGE1_EPOCHS=3; STAGE1_LR=3e-4; STAGE1_CTX_TOKEN_LOSS_WEIGHT=1.0; STAGE1_REC_LOSS_WEIGHT=1.0; STAGE1_DISTILL_LOSS_WEIGHT=0.0
+STAGE2_EPOCHS=3; STAGE2_LR=5e-5; STAGE2_CTX_TOKEN_LOSS_WEIGHT=1.0; STAGE2_REC_LOSS_WEIGHT=0.25; STAGE2_DISTILL_LOSS_WEIGHT=0.0
+STAGE2_MAX_EVAL_SAMPLES=2417
+SELECTOR_DATASET=musique; SELECTOR_EPOCHS=3; SELECTOR_LR=1e-3; SELECTOR_TEMPERATURE=0.07; SELECTOR_LAMBDA_MARGIN=0.0
+SELECTOR_MAX_TRAIN_QUESTIONS=10000; SELECTOR_MAX_VAL_QUESTIONS=200
+EVAL_HARNESS=qa; EVAL_DATASET=musique; TOP_K=0; K_SWEEP="2 4 6 8 10"; EVAL_MAX_SAMPLES=""; MAX_NEW_TOKENS=64   # full val = 2417
+EVAL_SELECTION_MODE=off
+EVAL_TRANSFORM=musique
